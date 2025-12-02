@@ -3,7 +3,7 @@ import json
 
 def envoyer(req):
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    s.connect(("127.0.0.1", 5000))
+    s.connect(("server", 5000))
     s.send(json.dumps(req).encode())
     data = s.recv(4096).decode()
     s.close()
