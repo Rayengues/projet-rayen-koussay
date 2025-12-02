@@ -1,0 +1,24 @@
+services:
+  server:
+    build: ../sserveur       
+    container_name: task-serveur
+    ports:
+      - "5000:5000"         
+    networks:
+      - taches-net
+
+  client:
+    build: ../client
+    container_name: task-client
+    depends_on:
+      - server
+    ports:
+      - "3000:3000"
+    networks:
+      - taches-net
+    stdin_open: true
+    tty: true
+
+networks:
+  taches-net:
+    driver: bridge
